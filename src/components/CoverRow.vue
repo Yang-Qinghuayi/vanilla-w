@@ -13,25 +13,30 @@
         :play-button-size="type === 'artist' ? 26 : playButtonSize"
       />
       <div class="text">
+
+        <!--显示多少首-->
         <div v-if="showPlayCount" class="info">
-          <span class="play-count"
-            ><svg-icon icon-class="play" />{{
-              item.playCount | formatPlayCount
-            }}
+          <span class="play-count">
+            <svg-icon icon-class="play"/>
+            {{ item.playCount | formatPlayCount }}
           </span>
         </div>
+
+        <!--显示标题-->
         <div class="title" :style="{ fontSize: subTextFontSize }">
-          <span v-if="isExplicit(item)" class="explicit-symbol"
-            ><ExplicitSymbol
-          /></span>
+          <span v-if="isExplicit(item)" class="explicit-symbol">
+            <ExplicitSymbol/>
+          </span>
           <span v-if="isPrivacy(item)" class="lock-icon">
-            <svg-icon icon-class="lock"
-          /></span>
+            <svg-icon icon-class="lock"/>
+          </span>
           <router-link :to="getTitleLink(item)">{{ item.name }}</router-link>
         </div>
-        <div v-if="type !== 'artist' && subText !== 'none'" class="info">
-          <span v-html="getSubText(item)"></span>
-        </div>
+
+        <!--显示谁的-->
+        <!--        <div v-if="type !== 'artist' && subText !== 'none'" class="info">
+                  <span v-html="getSubText(item)"></span>
+                </div>-->
       </div>
     </div>
   </div>
@@ -48,14 +53,14 @@ export default {
     ExplicitSymbol,
   },
   props: {
-    items: { type: Array, required: true },
-    type: { type: String, required: true },
-    subText: { type: String, default: 'null' },
-    subTextFontSize: { type: String, default: '16px' },
-    showPlayCount: { type: Boolean, default: false },
-    columnNumber: { type: Number, default: 5 },
-    gap: { type: String, default: '44px 24px' },
-    playButtonSize: { type: Number, default: 22 },
+    items: {type: Array, required: true},
+    type: {type: String, required: true},
+    subText: {type: String, default: 'null'},
+    subTextFontSize: {type: String, default: '16px'},
+    showPlayCount: {type: Boolean, default: false},
+    columnNumber: {type: Number, default: 5},
+    gap: {type: String, default: '44px 24px'},
+    playButtonSize: {type: Number, default: 22},
   },
   computed: {
     rowStyles() {
@@ -124,8 +129,10 @@ export default {
 
 .item {
   color: var(--color-text);
+
   .text {
     margin-top: 8px;
+
     .title {
       font-size: 16px;
       font-weight: 600;
@@ -136,6 +143,7 @@ export default {
       overflow: hidden;
       word-break: break-all;
     }
+
     .info {
       font-size: 12px;
       opacity: 0.68;
@@ -153,9 +161,11 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: center;
+
   .cover {
     display: flex;
   }
+
   .title {
     margin-top: 4px;
   }
@@ -171,6 +181,7 @@ export default {
   opacity: 0.28;
   color: var(--color-text);
   float: right;
+
   .svg-icon {
     margin-bottom: -3px;
   }
@@ -192,6 +203,7 @@ export default {
   opacity: 0.58;
   color: var(--color-text);
   font-size: 12px;
+
   .svg-icon {
     margin-right: 3px;
     height: 8px;

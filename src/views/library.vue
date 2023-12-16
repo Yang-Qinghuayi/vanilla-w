@@ -14,7 +14,6 @@
     </div>
 
     <div class="section-one">
-
       <div class="liked-songs" @click="goToLikedSongsList">
         <div class="bottom">
           <div class="titles">
@@ -33,6 +32,8 @@
     <div class="section-two">
       <div class="tabs-row">
         <div class="tabs">
+
+          <!--          第一个,全部歌单-->
           <div
             class="tab dropdown"
             :class="{ active: currentTab === 'playlists' }"
@@ -44,11 +45,15 @@
                   mine: $t('contextMenu.minePlaylists'),
                   liked: $t('contextMenu.likedPlaylists'),
                 }[playlistFilter]
-              }}</span>
-            <span class="icon" @click.stop="openPlaylistTabMenu"
-            ><svg-icon icon-class="dropdown"
-            /></span>
+              }}
+            </span>
+            <!--这里是下拉小箭头-->
+            <span class="icon" @click.stop="openPlaylistTabMenu">
+              <svg-icon icon-class="dropdown"/>
+            </span>
           </div>
+
+          <!--          专辑-->
           <div
             class="tab"
             :class="{ active: currentTab === 'albums' }"
@@ -56,6 +61,8 @@
           >
             {{ $t('library.albums') }}
           </div>
+
+          <!--          艺人-->
           <div
             class="tab"
             :class="{ active: currentTab === 'artists' }"
@@ -63,6 +70,7 @@
           >
             {{ $t('library.artists') }}
           </div>
+          <!--          MV-->
           <div
             class="tab"
             :class="{ active: currentTab === 'mvs' }"
@@ -70,6 +78,8 @@
           >
             {{ $t('library.mvs') }}
           </div>
+
+          <!--          云盘-->
           <div
             class="tab"
             :class="{ active: currentTab === 'cloudDisk' }"
@@ -77,6 +87,8 @@
           >
             {{ $t('library.cloudDisk') }}
           </div>
+
+          <!--          听歌排行-->
           <div
             class="tab"
             :class="{ active: currentTab === 'playHistory' }"
@@ -85,6 +97,8 @@
             {{ $t('library.playHistory.title') }}
           </div>
         </div>
+
+        <!--        机动按钮,根据页面选择性展示-->
         <button
           v-show="currentTab === 'playlists'"
           class="tab-button"
@@ -103,6 +117,10 @@
         </button>
       </div>
 
+
+      <!--机动页面,选择性展示
+      todo: 修改成链接式的,不要用v-show
+      -->
       <div v-show="currentTab === 'playlists'">
         <div v-if="liked.playlists.length > 1">
           <CoverRow
@@ -445,7 +463,6 @@ export default {
     margin-bottom: 15px;
   }
 }
-
 
 
 .section-one {

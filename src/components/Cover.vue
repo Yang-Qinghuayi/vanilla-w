@@ -7,23 +7,28 @@
     @click="clickCoverToPlay ? play() : goTo()"
   >
     <div class="cover-container">
+
+      <!--播放按钮-->
       <div class="shade">
         <button
-          v-show="focus"
           class="play-button"
           :style="playButtonStyles"
           @click.stop="play()"
-          ><svg-icon icon-class="play" />
+        >
+          <svg-icon icon-class="play"/>
         </button>
       </div>
-      <img :src="imageUrl" :style="imageStyles" loading="lazy" />
-      <transition v-if="coverHover || alwaysShowShadow" name="fade">
+      <!--封面-->
+      <img :src="imageUrl" :style="imageStyles" loading="lazy"/>
+      
+      <!--阴影-->
+<!--      <transition v-if="coverHover || alwaysShowShadow" name="fade">
         <div
           v-show="focus || alwaysShowShadow"
           class="shadow"
           :style="shadowStyles"
         ></div>
-      </transition>
+      </transition>-->
     </div>
   </div>
 </template>
@@ -31,17 +36,17 @@
 <script>
 export default {
   props: {
-    id: { type: Number, required: true },
-    type: { type: String, required: true },
-    imageUrl: { type: String, required: true },
-    fixedSize: { type: Number, default: 0 },
-    playButtonSize: { type: Number, default: 22 },
-    coverHover: { type: Boolean, default: true },
-    alwaysShowPlayButton: { type: Boolean, default: true },
-    alwaysShowShadow: { type: Boolean, default: false },
-    clickCoverToPlay: { type: Boolean, default: false },
-    shadowMargin: { type: Number, default: 12 },
-    radius: { type: Number, default: 12 },
+    id: {type: Number, required: true},
+    type: {type: String, required: true},
+    imageUrl: {type: String, required: true},
+    fixedSize: {type: Number, default: 0},
+    playButtonSize: {type: Number, default: 22},
+    coverHover: {type: Boolean, default: true},
+    alwaysShowPlayButton: {type: Boolean, default: true},
+    alwaysShowShadow: {type: Boolean, default: false},
+    clickCoverToPlay: {type: Boolean, default: false},
+    shadowMargin: {type: Number, default: 12},
+    radius: {type: Number, default: 12},
   },
   data() {
     return {
@@ -82,7 +87,7 @@ export default {
       playActions[this.type].bind(player)(this.id);
     },
     goTo() {
-      this.$router.push({ name: this.type, params: { id: this.id } });
+      this.$router.push({name: this.type, params: {id: this.id}});
     },
   },
 };
@@ -93,9 +98,11 @@ export default {
   position: relative;
   transition: transform 0.3s;
 }
+
 .cover-container {
   position: relative;
 }
+
 img {
   border-radius: 0.75em;
   width: 100%;
@@ -121,6 +128,7 @@ img {
   justify-content: center;
   align-items: center;
 }
+
 .play-button {
   display: flex;
   justify-content: center;
@@ -134,15 +142,18 @@ img {
   border-radius: 50%;
   cursor: default;
   transition: 0.2s;
+
   .svg-icon {
     height: 44%;
     margin: {
       left: 4px;
     }
   }
+
   &:hover {
     background: rgba(255, 255, 255, 0.28);
   }
+
   &:active {
     transform: scale(0.94);
   }
@@ -165,7 +176,9 @@ img {
 .fade-leave-active {
   transition: opacity 0.3s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
   opacity: 0;
 }
 </style>
