@@ -4,12 +4,10 @@
     <div style="display: grid; grid-template-columns: 1fr 18fr; ">
       <Navbar style="width: 10px" v-show="false" ref="navbar"/>
       <div class="nvbar">
-
-        <div class="nav-item" @click="go('library')">我的</div>
-        <div class="nav-item" @click="go('home')">推荐</div>
-        <div class="nav-item" @click="go('explore')">发现</div>
-        <div class="nav-item" @click="go('settings')">设置</div>
-
+        <div class="nav-item x1" @click="go('/library')">我的</div>
+        <div class="nav-item x2" @click="go('/home')">推荐</div>
+        <div class="nav-item x3" @click="go('/explore')">发现</div>
+        <div class="nav-item x4" @click="go('/settings')">设置</div>
       </div>
       <div>
         <main
@@ -188,10 +186,11 @@ main::-webkit-scrollbar {
 
 .nvbar {
   position: fixed;
-  height: 900px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 .nav-item {
@@ -199,18 +198,34 @@ main::-webkit-scrollbar {
   display: flex;
   font-size: 20px;
   font-weight: bold;
+  color: #fff;
   justify-content: center;
   width: 100px;
   /* 条目宽度占满容器 */
   height: 30px;
   line-height: 30px;
   padding: 10px;
-  background-color: #f1f1f1;
-
-  /* 可以根据需要调整内边距 */
+  background-color: #b98895;
   margin: 5px;
-  /* 设置边框 */
+  /* 可以根据需要调整内边距 */
   border: 0 solid #ccc;
   border-radius: 5px;
+   
+  /* 设置边框 */
+}
+
+
+.x1{
+  background-color: #bdbd49;
+}
+
+.x2{
+  background-color: #8ba076;
+}
+.x3{
+  background-color: #b7a64a;
+}
+.x4{
+  background-color: #8e6b12;
 }
 </style>
