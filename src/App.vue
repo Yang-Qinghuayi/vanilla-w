@@ -1,28 +1,37 @@
 <template>
   <div id="app" :class="{ 'user-select-none': userSelectNone }">
-    <Scrollbar v-show="!showLyrics" ref="scrollbar" />
-    <Navbar v-show="showNavbar" ref="navbar" />
-    <main
-      ref="main"
-      :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
-      @scroll="handleScroll"
-     >
+    <Scrollbar v-show="!showLyrics" ref="scrollbar"/>
+    <div style="display: grid; grid-template-columns: 1fr 10fr; ">
+      <Navbar style="width: 10px" v-show="false" ref="navbar"/>
+      <div class="nvbar">
+        <div class="nav-item">我的</div>
+        <div class="nav-item">推荐</div>
+        <div class="nav-item">发现</div>
+        <div class="nav-item">搜索</div>
+        <div class="nav-item">设置</div>
+        <div class="nav-item">登出</div>
+      </div>
+      <main
+        ref="main"
+        :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
+        @scroll="handleScroll"
+      >
 
-      <keep-alive>
-        <router-view v-if="$route.meta.keepAlive"></router-view>
-      </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
-    </main>
-
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+      </main>
+    </div>
     <transition name="slide-up">
-      <Player v-if="enablePlayer" v-show="showPlayer" ref="player" />
+      <Player v-if="enablePlayer" v-show="showPlayer" ref="player"/>
     </transition>
 
-    <Toast />
-    <ModalAddTrackToPlaylist v-if="isAccountLoggedIn" />
-    <ModalNewPlaylist v-if="isAccountLoggedIn" />
+    <Toast/>
+    <ModalAddTrackToPlaylist v-if="isAccountLoggedIn"/>
+    <ModalNewPlaylist v-if="isAccountLoggedIn"/>
     <transition v-if="enablePlayer" name="slide-up">
-      <Lyrics v-show="showLyrics" />
+      <Lyrics v-show="showLyrics"/>
     </transition>
   </div>
 </template>
@@ -34,10 +43,11 @@ import Scrollbar from './components/Scrollbar.vue';
 import Navbar from './components/Navbar.vue';
 import Player from './components/Player.vue';
 import Toast from './components/Toast.vue';
-import { ipcRenderer } from './electron/ipcRenderer';
-import { isAccountLoggedIn, isLooseLoggedIn } from '@/utils/auth';
+import {ipcRenderer} from './electron/ipcRenderer';
+import {isAccountLoggedIn, isLooseLoggedIn} from '@/utils/auth';
 import Lyrics from './views/lyrics.vue';
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
+import {fastKey} from "core-js/internals/internal-metadata";
 
 export default {
   name: 'App',
@@ -85,6 +95,7 @@ export default {
     this.fetchData();
   },
   methods: {
+    fastKey,
     handleKeydown(e) {
       if (e.code === 'Space') {
         if (e.target.tagName === 'INPUT') return false;
@@ -119,7 +130,6 @@ export default {
 }
 
 
-
 main {
   position: fixed;
   top: 0;
@@ -127,7 +137,7 @@ main {
   right: 0;
   left: 0;
   overflow: auto;
-  padding: 64px 10vw 96px 10vw;
+  padding: 20px 2vw 116px 12vw;
   box-sizing: border-box;
   scrollbar-width: none; // firefox
 }
@@ -146,8 +156,38 @@ main::-webkit-scrollbar {
 .slide-up-leave-active {
   transition: transform 0.4s;
 }
+
 .slide-up-enter,
 .slide-up-leave-to {
   transform: translateY(100%);
+}
+
+.nvbar {
+  position: fixed;
+  //高度和网页一样
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nav-item {
+  align-content: center;
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  width: 100px;
+  /* 条目宽度占满容器 */
+  height: 30px;
+  line-height: 30px;
+  padding: 10px;
+  background-color: #f1f1f1;
+
+  /* 可以根据需要调整内边距 */
+  margin: 5px;
+  /* 设置边框 */
+  border: 0px solid #ccc;
+  border-radius: 5px;
 }
 </style>

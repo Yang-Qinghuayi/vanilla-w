@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav :class="{ 'has-custom-titlebar': hasCustomTitlebar }">
+    <nav :class="{ 'has-custom-titlebar': hasCustomTitlebar}">
       <Win32Titlebar v-if="enableWin32Titlebar"/>
       <LinuxTitlebar v-if="enableLinuxTitlebar"/>
 
