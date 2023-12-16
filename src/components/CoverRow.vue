@@ -161,7 +161,7 @@ export default {
   }
 
   .title {
-    margin-top: 4px;
+    //margin-top: 4px;
   }
 }
 

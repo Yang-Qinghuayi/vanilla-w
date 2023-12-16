@@ -4,6 +4,7 @@
     <div class="mine">
       <!-- 这里放我的头像 -->
       <img
+        alt="mine"
         class="avatar"
         :src="data.user.avatarUrl | resizeImage"
         loading="lazy"
@@ -16,15 +17,16 @@
     <div class="section-one">
       <div class="liked-songs" @click="goToLikedSongsList">
         <div class="bottom">
+
+          <!--我喜欢的音乐-->
           <div class="titles">
             <div class="title">{{ $t('library.likedSongs') }}</div>
-            <div class="sub-title">
-              {{ liked.songs.length }} {{ $t('common.songs') }}
-            </div>
           </div>
+
           <button @click.stop="openPlayModeTabMenu">
             <svg-icon icon-class="play"/>
           </button>
+
         </div>
       </div>
     </div>
@@ -468,13 +470,6 @@ export default {
 .section-one {
   display: flex;
   margin-top: 24px;
-
-  .songs {
-    flex: 7;
-    margin-top: 8px;
-    margin-left: 36px;
-    overflow: hidden;
-  }
 }
 
 .liked-songs {
@@ -488,13 +483,12 @@ export default {
   transition: all 0.4s;
   box-sizing: border-box;
 
-  background: var(--color-primary-bg);
+  background: #f5f0f0;
 
   .bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--color-primary);
 
     .title {
       font-size: 24px;
@@ -513,10 +507,9 @@ export default {
       align-items: center;
       height: 44px;
       width: 44px;
-      background: var(--color-primary);
+      background: #04988a;
       border-radius: 50%;
       transition: 0.2s;
-      box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.2);
       cursor: default;
 
       .svg-icon {
