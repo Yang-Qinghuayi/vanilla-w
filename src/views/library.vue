@@ -1,24 +1,21 @@
 <template>
   <div v-show="show" ref="library">
-    <h1>
+
+    <div class="mine">
+      <!-- 这里放我的头像 -->
       <img
         class="avatar"
         :src="data.user.avatarUrl | resizeImage"
         loading="lazy"
-      />{{ data.user.nickname }}{{ $t('library.sLibrary') }}
-    </h1>
+      />
+      <h1>
+        {{ data.user.nickname }}
+      </h1>
+    </div>
+
     <div class="section-one">
+
       <div class="liked-songs" @click="goToLikedSongsList">
-        <div class="top">
-          <p>
-            <span
-              v-for="(line, index) in pickedLyric"
-              v-show="line !== ''"
-              :key="`${line}${index}`"
-              >{{ line }}<br
-            /></span>
-          </p>
-        </div>
         <div class="bottom">
           <div class="titles">
             <div class="title">{{ $t('library.likedSongs') }}</div>
@@ -27,18 +24,9 @@
             </div>
           </div>
           <button @click.stop="openPlayModeTabMenu">
-            <svg-icon icon-class="play" />
+            <svg-icon icon-class="play"/>
           </button>
         </div>
-      </div>
-      <div class="songs">
-        <TrackList
-          :id="liked.playlists.length > 0 ? liked.playlists[0].id : 0"
-          :tracks="liked.songsWithDetails"
-          :column-number="3"
-          type="tracklist"
-          dbclick-track-func="playPlaylistByID"
-        />
       </div>
     </div>
 
@@ -51,14 +39,14 @@
             @click="updateCurrentTab('playlists')"
           >
             <span class="text">{{
-              {
-                all: $t('contextMenu.allPlaylists'),
-                mine: $t('contextMenu.minePlaylists'),
-                liked: $t('contextMenu.likedPlaylists'),
-              }[playlistFilter]
-            }}</span>
+                {
+                  all: $t('contextMenu.allPlaylists'),
+                  mine: $t('contextMenu.minePlaylists'),
+                  liked: $t('contextMenu.likedPlaylists'),
+                }[playlistFilter]
+              }}</span>
             <span class="icon" @click.stop="openPlaylistTabMenu"
-              ><svg-icon icon-class="dropdown"
+            ><svg-icon icon-class="dropdown"
             /></span>
           </div>
           <div
@@ -101,13 +89,17 @@
           v-show="currentTab === 'playlists'"
           class="tab-button"
           @click="openAddPlaylistModal"
-          ><svg-icon icon-class="plus" />{{ $t('library.newPlayList') }}
+        >
+          <svg-icon icon-class="plus"/>
+          {{ $t('library.newPlayList') }}
         </button>
         <button
           v-show="currentTab === 'cloudDisk'"
           class="tab-button"
           @click="selectUploadFiles"
-          ><svg-icon icon-class="arrow-up-alt" />{{ $t('library.uploadSongs') }}
+        >
+          <svg-icon icon-class="arrow-up-alt"/>
+          {{ $t('library.uploadSongs') }}
         </button>
       </div>
 
@@ -140,7 +132,7 @@
       </div>
 
       <div v-show="currentTab === 'mvs'">
-        <MvRow :mvs="liked.mvs" />
+        <MvRow :mvs="liked.mvs"/>
       </div>
 
       <div v-show="currentTab === 'cloudDisk'">
@@ -190,35 +182,40 @@
 
     <ContextMenu ref="playlistTabMenu">
       <div class="item" @click="changePlaylistFilter('all')">{{
-        $t('contextMenu.allPlaylists')
-      }}</div>
-      <hr />
+          $t('contextMenu.allPlaylists')
+        }}
+      </div>
+      <hr/>
       <div class="item" @click="changePlaylistFilter('mine')">{{
-        $t('contextMenu.minePlaylists')
-      }}</div>
+          $t('contextMenu.minePlaylists')
+        }}
+      </div>
       <div class="item" @click="changePlaylistFilter('liked')">{{
-        $t('contextMenu.likedPlaylists')
-      }}</div>
+          $t('contextMenu.likedPlaylists')
+        }}
+      </div>
     </ContextMenu>
 
     <ContextMenu ref="playModeTabMenu">
       <div class="item" @click="playLikedSongs">{{
-        $t('library.likedSongs')
-      }}</div>
-      <hr />
+          $t('library.likedSongs')
+        }}
+      </div>
+      <hr/>
       <div class="item" @click="playIntelligenceList">{{
-        $t('contextMenu.cardiacMode')
-      }}</div>
+          $t('contextMenu.cardiacMode')
+        }}
+      </div>
     </ContextMenu>
   </div>
 </template>
 
 <script>
-import { mapActions, mapMutations, mapState } from 'vuex';
-import { randomNum, dailyTask } from '@/utils/common';
-import { isAccountLoggedIn } from '@/utils/auth';
-import { uploadSong } from '@/api/user';
-import { getLyric } from '@/api/track';
+import {mapActions, mapMutations, mapState} from 'vuex';
+import {randomNum, dailyTask} from '@/utils/common';
+import {isAccountLoggedIn} from '@/utils/auth';
+import {uploadSong} from '@/api/user';
+import {getLyric} from '@/api/track';
 import NProgress from 'nprogress';
 import locale from '@/locale';
 
@@ -240,7 +237,7 @@ function extractLyricPart(rawLyric) {
 
 export default {
   name: 'Library',
-  components: { SvgIcon, CoverRow, TrackList, MvRow, ContextMenu },
+  components: {SvgIcon, CoverRow, TrackList, MvRow, ContextMenu},
   data() {
     return {
       show: false,
@@ -356,10 +353,10 @@ export default {
         return;
       }
       this.currentTab = tab;
-      this.$parent.$refs.main.scrollTo({ top: 375, behavior: 'smooth' });
+      this.$parent.$refs.main.scrollTo({top: 375, behavior: 'smooth'});
     },
     goToLikedSongsList() {
-      this.$router.push({ path: '/library/liked-songs' });
+      this.$router.push({path: '/library/liked-songs'});
     },
     getRandomLyric() {
       if (this.liked.songs.length === 0) return;
@@ -394,8 +391,8 @@ export default {
       this.$refs.playModeTabMenu.openMenu(e);
     },
     changePlaylistFilter(type) {
-      this.updateData({ key: 'libraryPlaylistFilter', value: type });
-      window.scrollTo({ top: 375, behavior: 'smooth' });
+      this.updateData({key: 'libraryPlaylistFilter', value: type});
+      window.scrollTo({top: 375, behavior: 'smooth'});
     },
     selectUploadFiles() {
       this.$refs.cloudDiskUploadInput.click();
@@ -418,23 +415,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 42px;
-  color: var(--color-text);
+
+
+.mine {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 250px;
+  background-color: #682525;
+  border: #fff;
+  border-radius: 10px;
+  /* 内容上下显示 */
+  flex-direction: column;
+  margin: 10px 0;
+
   .avatar {
-    height: 44px;
-    margin-right: 12px;
-    vertical-align: -7px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    border: rgba(0, 0, 0, 0.2);
+    margin: 20px 30px;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
 }
+
+
 
 .section-one {
   display: flex;
   margin-top: 24px;
+
   .songs {
     flex: 7;
     margin-top: 8px;
@@ -466,6 +483,7 @@ h1 {
       font-size: 24px;
       font-weight: 700;
     }
+
     .sub-title {
       font-size: 15px;
       margin-top: 2px;
@@ -490,10 +508,12 @@ h1 {
         height: 16px;
         width: 16px;
       }
+
       &:hover {
         transform: scale(1.06);
         box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.4);
       }
+
       &:active {
         transform: scale(0.94);
       }
@@ -507,6 +527,7 @@ h1 {
     font-size: 14px;
     opacity: 0.88;
     color: var(--color-primary);
+
     p {
       margin-top: 2px;
     }
@@ -529,6 +550,7 @@ h1 {
   flex-wrap: wrap;
   font-size: 18px;
   color: var(--color-text);
+
   .tab {
     font-weight: 600;
     padding: 8px 14px;
@@ -538,28 +560,34 @@ h1 {
     user-select: none;
     transition: 0.2s;
     opacity: 0.68;
+
     &:hover {
       opacity: 0.88;
       background-color: var(--color-secondary-bg);
     }
   }
+
   .tab.active {
     opacity: 0.88;
     background-color: var(--color-secondary-bg);
   }
+
   .tab.dropdown {
     display: flex;
     align-items: center;
     padding: 0;
     overflow: hidden;
+
     .text {
       padding: 8px 3px 8px 14px;
     }
+
     .icon {
       height: 100%;
       display: flex;
       align-items: center;
       padding: 0 8px 0 3px;
+
       .svg-icon {
         height: 16px;
         width: 16px;
@@ -578,15 +606,18 @@ button.tab-button {
   transition: 0.2s;
   opacity: 0.68;
   font-weight: 500;
+
   .svg-icon {
     width: 14px;
     height: 14px;
     margin-right: 8px;
   }
+
   &:hover {
     opacity: 1;
     background: var(--color-secondary-bg);
   }
+
   &:active {
     opacity: 1;
     transform: scale(0.92);
@@ -603,10 +634,12 @@ button.playHistory-button {
   opacity: 0.68;
   font-weight: 500;
   cursor: pointer;
+
   &:hover {
     opacity: 1;
     background: var(--color-secondary-bg);
   }
+
   &:active {
     transform: scale(0.95);
   }
@@ -617,6 +650,7 @@ button.playHistory-button--selected {
   background: var(--color-secondary-bg);
   opacity: 1;
   font-weight: 700;
+
   &:active {
     transform: none;
   }
