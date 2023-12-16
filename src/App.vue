@@ -1,27 +1,29 @@
 <template>
   <div id="app" :class="{ 'user-select-none': userSelectNone }">
     <Scrollbar v-show="!showLyrics" ref="scrollbar"/>
-    <div style="display: grid; grid-template-columns: 1fr 10fr; ">
+    <div style="display: grid; grid-template-columns: 1fr 18fr; ">
       <Navbar style="width: 10px" v-show="false" ref="navbar"/>
       <div class="nvbar">
-        <div class="nav-item">我的</div>
-        <div class="nav-item">推荐</div>
-        <div class="nav-item">发现</div>
-        <div class="nav-item">搜索</div>
-        <div class="nav-item">设置</div>
-        <div class="nav-item">登出</div>
-      </div>
-      <main
-        ref="main"
-        :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
-        @scroll="handleScroll"
-      >
 
-        <keep-alive>
-          <router-view v-if="$route.meta.keepAlive"></router-view>
-        </keep-alive>
-        <router-view v-if="!$route.meta.keepAlive"></router-view>
-      </main>
+        <div class="nav-item" @click="go('library')">我的</div>
+        <div class="nav-item" @click="go('home')">推荐</div>
+        <div class="nav-item" @click="go('explore')">发现</div>
+        <div class="nav-item" @click="go('settings')">设置</div>
+
+      </div>
+      <div>
+        <main
+          ref="main"
+          :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
+          @scroll="handleScroll"
+        >
+
+          <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+          </keep-alive>
+          <router-view v-if="!$route.meta.keepAlive"></router-view>
+        </main>
+      </div>
     </div>
     <transition name="slide-up">
       <Player v-if="enablePlayer" v-show="showPlayer" ref="player"/>
@@ -95,6 +97,11 @@ export default {
     this.fetchData();
   },
   methods: {
+
+    go(where) {
+      this.$router.push({path: where});
+    },
+
     fastKey,
     handleKeydown(e) {
       if (e.code === 'Space') {
@@ -130,26 +137,43 @@ export default {
 }
 
 
+.active {
+  background: var(--color-primary-bg-for-transparent);
+
+  input,
+  .svg-icon {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+}
+
 main {
-  position: fixed;
+  //position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   overflow: auto;
-  padding: 20px 2vw 116px 12vw;
+  margin-bottom: 0;
+  padding: 20px 2vw 11px 12vw;
   box-sizing: border-box;
   scrollbar-width: none; // firefox
+  margin-left: 140px;
+  width: 90vw;
+//  边框阴影
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: #fdfdf5;
 }
 
-@media (max-width: 1336px) {
+@media (max-width: 1736px) {
   main {
-    padding: 64px 5vw 96px 5vw;
+    padding: 4px 2vw 106px 2vw;
   }
 }
 
 main::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
 
 .slide-up-enter-active,
@@ -164,7 +188,6 @@ main::-webkit-scrollbar {
 
 .nvbar {
   position: fixed;
-  //高度和网页一样
   height: 900px;
   display: flex;
   flex-direction: column;
@@ -187,7 +210,7 @@ main::-webkit-scrollbar {
   /* 可以根据需要调整内边距 */
   margin: 5px;
   /* 设置边框 */
-  border: 0px solid #ccc;
+  border: 0 solid #ccc;
   border-radius: 5px;
 }
 </style>

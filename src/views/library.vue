@@ -15,20 +15,30 @@
     </div>
 
     <div class="section-one">
-      <div class="liked-songs" @click="goToLikedSongsList">
-        <div class="bottom">
 
-          <!--我喜欢的音乐-->
-          <div class="titles">
-            <div class="title">{{ $t('library.likedSongs') }}</div>
+      <div style=" width: 92vw; display: grid; grid-template-columns : 1fr 1fr">
+        <div class="liked-songs" @click="goToLikedSongsList">
+          <div class="bottom">
+            <!--我喜欢的音乐-->
+            <div class="titles">
+              <div class="title">{{ $t('library.likedSongs') }}</div>
+            </div>
+
+            <button @click.stop="openPlayModeTabMenu">
+              <svg-icon icon-class="play"/>
+            </button>
           </div>
 
-          <button @click.stop="openPlayModeTabMenu">
-            <svg-icon icon-class="play"/>
-          </button>
-
         </div>
+
+<!--       
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="搜索">
+        </div>-->
+
       </div>
+
+
     </div>
 
     <div class="section-two">
@@ -436,13 +446,36 @@ export default {
 
 <style lang="scss" scoped>
 
+/* 在你的样式表中添加以下样式 */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 42vw;
+  margin-left: 10px;
+}
+
+.search-input {
+  height: 30px;
+  flex: 1;
+  padding: 10px;
+  border: 3px solid #ccc;
+  border-radius: 14px;
+  outline: none;
+}
+
+.search-icon {
+  margin-right: 10px;
+  color: #757575;
+}
+
 
 .mine {
   display: flex;
   align-items: flex-start;
   width: 100%;
   height: 250px;
-  background-color: #682525;
+  background-color: #916571;
   border: #fff;
   border-radius: 10px;
   /* 内容上下显示 */
