@@ -17,23 +17,29 @@
           />
         </button-icon>
       </div>
+
       <div class="navigation-links">
-        <router-link to="/" :class="{ active: $route.name === 'home' }">{{
-            $t('nav.home')
-          }}
-        </router-link>
-        <router-link
-          to="/explore"
-          :class="{ active: $route.name === 'explore' }"
-        >{{ $t('nav.explore') }}
-        </router-link
-        >
+
+        <!--我的音乐-->
         <router-link
           to="/library"
           :class="{ active: $route.name === 'library' }"
         >{{ $t('nav.library') }}
-        </router-link
-        >
+        </router-link>
+
+        <!--去到推荐页面-->
+        <router-link to="/home" :class="{ active: $route.name === 'home' }">{{
+            $t('nav.home')
+          }}
+        </router-link>
+
+        <!--去到发现页面-->
+        <router-link
+          to="/explore"
+          :class="{ active: $route.name === 'explore' }"
+        >{{ $t('nav.explore') }}
+        </router-link>
+
       </div>
       <div class="right-part">
         <div class="search-box">

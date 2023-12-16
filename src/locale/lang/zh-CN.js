@@ -4,9 +4,9 @@ export default {
     songs: '首歌',
   },
   nav: {
-    home: '首页',
-    explore: '发现',
     library: '我的',
+    home: '推荐',
+    explore: '发现',
     search: '搜索',
     github: 'GitHub 仓库',
   },
