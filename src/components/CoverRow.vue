@@ -10,47 +10,32 @@
         :id="item.id"
         :image-url="getImageUrl(item)"
         :type="type"
-        :play-button-size="type === 'artist' ? 26 : playButtonSize"
+        :play-button-size="type === 'artist' ? 16 : playButtonSize"
       />
-      <div class="text">
 
-        <!--显示多少首-->
-        <div v-if="showPlayCount" class="info">
-          <span class="play-count">
-            <svg-icon icon-class="play"/>
-            {{ item.playCount | formatPlayCount }}
-          </span>
-        </div>
-
-        <!--显示标题-->
-        <div class="title" :style="{ fontSize: subTextFontSize }">
-          <span v-if="isExplicit(item)" class="explicit-symbol">
-            <ExplicitSymbol/>
-          </span>
-          <span v-if="isPrivacy(item)" class="lock-icon">
-            <svg-icon icon-class="lock"/>
-          </span>
+      <div
+        style="display: flex;  flex-direction: row; align-items: center; justify-content: space-between;">
+  
+        <div class="text">
           <router-link :to="getTitleLink(item)">{{ item.name }}</router-link>
         </div>
 
-        <!--显示谁的-->
-        <!--        <div v-if="type !== 'artist' && subText !== 'none'" class="info">
-                  <span v-html="getSubText(item)"></span>
-                </div>-->
+        <button @click.stop="play(item)">
+          <svg-icon style="height: 10px; width: 10px; margin-right: 5px" icon-class="play"/>
+        </button>
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import Cover from '@/components/Cover.vue';
-import ExplicitSymbol from '@/components/ExplicitSymbol.vue';
 
 export default {
   name: 'CoverRow',
   components: {
     Cover,
-    ExplicitSymbol,
   },
   props: {
     items: {type: Array, required: true},
@@ -58,11 +43,18 @@ export default {
     subText: {type: String, default: 'null'},
     subTextFontSize: {type: String, default: '16px'},
     showPlayCount: {type: Boolean, default: false},
-    columnNumber: {type: Number, default: 5},
+    columnNumber: {type: Number, default: 6},
     gap: {type: String, default: '44px 24px'},
-    playButtonSize: {type: Number, default: 22},
+    playButtonSize: {type: Number, default: 16},
   },
   computed: {
+    playButtonStyles() {
+      let styles = {};
+      styles.width = this.playButtonSize + '%';
+      styles.height = this.playButtonSize + '%';
+      return styles;
+    },
+
     rowStyles() {
       return {
         'grid-template-columns': `repeat(${this.columnNumber}, 1fr)`,
@@ -71,6 +63,17 @@ export default {
     },
   },
   methods: {
+
+    play(item) {
+      const player = this.$store.state.player;
+      const playActions = {
+        album: player.playAlbumByID,
+        playlist: player.playPlaylistByID,
+        artist: player.playArtistByID,
+      };
+      playActions[this.type].bind(player)(item.id);
+    },
+
     getSubText(item) {
       if (this.subText === 'copywriter') return item.copywriter;
       if (this.subText === 'description') return item.description;
@@ -127,33 +130,24 @@ export default {
   display: grid;
 }
 
+
 .item {
-  color: var(--color-text);
+  background: #f5f0f0;
+  height: 252px;
+  border-radius: 0.75em;
 
   .text {
-    margin-top: 8px;
-
-    .title {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 20px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      word-break: break-all;
-    }
-
-    .info {
-      font-size: 12px;
-      opacity: 0.68;
-      line-height: 18px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      word-break: break-word;
-    }
+   padding-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 560;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    word-break: break-all;
   }
 }
 

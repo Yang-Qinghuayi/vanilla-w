@@ -118,6 +118,8 @@ export default {
   transition: all 0.4s;
 }
 
+
+
 main {
   position: fixed;
   top: 0;

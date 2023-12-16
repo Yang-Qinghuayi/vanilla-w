@@ -9,7 +9,7 @@
     <div class="cover-container">
 
       <!--播放按钮-->
-      <div class="shade">
+<!--      <div class="shade">
         <button
           class="play-button"
           :style="playButtonStyles"
@@ -17,18 +17,12 @@
         >
           <svg-icon icon-class="play"/>
         </button>
-      </div>
-      <!--封面-->
-      <img :src="imageUrl" :style="imageStyles" loading="lazy"/>
+      </div>-->
       
-      <!--阴影-->
-<!--      <transition v-if="coverHover || alwaysShowShadow" name="fade">
-        <div
-          v-show="focus || alwaysShowShadow"
-          class="shadow"
-          :style="shadowStyles"
-        ></div>
-      </transition>-->
+      <!--封面-->
+      <img :src="imageUrl" alt="封面" :style="imageStyles" loading="lazy"/>
+      
+      
     </div>
   </div>
 </template>
@@ -100,15 +94,18 @@ export default {
 }
 
 .cover-container {
-  position: relative;
+  border-radius: 0.75em;
+  width: 100%;
+  user-select: none;
+  aspect-ratio: 1/1;
 }
 
 img {
   border-radius: 0.75em;
   width: 100%;
   user-select: none;
-  aspect-ratio: 1 / 1;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  aspect-ratio: 1/1;
+  //border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .cover-hover {
@@ -123,22 +120,23 @@ img {
   top: 0;
   height: calc(100% - 3px);
   width: 100%;
-  background: transparent;
+  //background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .play-button {
+  
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.14);
+  background: #b3566c;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  height: 22%;
-  width: 22%;
+  height: 10%;
+  width: 10%;
   border-radius: 50%;
   cursor: default;
   transition: 0.2s;
@@ -150,9 +148,9 @@ img {
     }
   }
 
-  &:hover {
+ /* &:hover {
     background: rgba(255, 255, 255, 0.28);
-  }
+  }*/
 
   &:active {
     transform: scale(0.94);

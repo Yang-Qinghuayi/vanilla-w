@@ -6,7 +6,7 @@
 }
 @font-face {
   font-family: 'Barlow';
-  font-weight: medium;
+  font-weight: normal;
   src: url('~@/assets/fonts/Barlow-Medium.woff2') format('woff2'),
     url('~@/assets/fonts/Barlow-Medium.ttf') format('truetype');
 }
@@ -68,7 +68,7 @@ input {
     microsoft uighur;
 }
 body {
-  background-color: var(--color-body-bg);
+  background-color: #fdfdf5;
 }
 
 html {
