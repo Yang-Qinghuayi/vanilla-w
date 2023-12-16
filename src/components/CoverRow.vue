@@ -133,7 +133,7 @@ export default {
 
 .item {
   background: #f5f0f0;
-  height: 252px;
+  height: 272px;
   border-radius: 0.75em;
 
   .text {
