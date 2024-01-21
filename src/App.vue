@@ -1,21 +1,17 @@
 <template>
   <div id="app" :class="{ 'user-select-none': userSelectNone }">
-    <Scrollbar v-show="!showLyrics" ref="scrollbar"/>
+    <Scrollbar v-show="!showLyrics" ref="scrollbar" />
     <div style="display: grid; grid-template-columns: 1fr 18fr; ">
-      <Navbar style="width: 10px" v-show="false" ref="navbar"/>
+      <Navbar style="width: 10px" v-show="false" ref="navbar" />
       <div class="nvbar">
         <div class="nav-item x1" @click="go('/library')">我的</div>
         <div class="nav-item x2" @click="go('/home')">推荐</div>
         <div class="nav-item x3" @click="go('/explore')">发现</div>
+        <div class="nav-item x3" @click="go('/searchPage')">搜索</div>
         <div class="nav-item x4" @click="go('/settings')">设置</div>
       </div>
       <div>
-        <main
-          ref="main"
-          :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
-          @scroll="handleScroll"
-        >
-
+        <main ref="main" :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }" @scroll="handleScroll">
           <keep-alive>
             <router-view v-if="$route.meta.keepAlive"></router-view>
           </keep-alive>
@@ -24,14 +20,14 @@
       </div>
     </div>
     <transition name="slide-up">
-      <Player v-if="enablePlayer" v-show="showPlayer" ref="player"/>
+      <Player v-if="enablePlayer" v-show="showPlayer" ref="player" />
     </transition>
 
-    <Toast/>
-    <ModalAddTrackToPlaylist v-if="isAccountLoggedIn"/>
-    <ModalNewPlaylist v-if="isAccountLoggedIn"/>
+    <Toast />
+    <ModalAddTrackToPlaylist v-if="isAccountLoggedIn" />
+    <ModalNewPlaylist v-if="isAccountLoggedIn" />
     <transition v-if="enablePlayer" name="slide-up">
-      <Lyrics v-show="showLyrics"/>
+      <Lyrics v-show="showLyrics" />
     </transition>
   </div>
 </template>
@@ -43,11 +39,11 @@ import Scrollbar from './components/Scrollbar.vue';
 import Navbar from './components/Navbar.vue';
 import Player from './components/Player.vue';
 import Toast from './components/Toast.vue';
-import {ipcRenderer} from './electron/ipcRenderer';
-import {isAccountLoggedIn, isLooseLoggedIn} from '@/utils/auth';
+import { ipcRenderer } from './electron/ipcRenderer';
+import { isAccountLoggedIn, isLooseLoggedIn } from '@/utils/auth';
 import Lyrics from './views/lyrics.vue';
-import {mapState} from 'vuex';
-import {fastKey} from "core-js/internals/internal-metadata";
+import { mapState } from 'vuex';
+import { fastKey } from "core-js/internals/internal-metadata";
 
 export default {
   name: 'App',
@@ -97,7 +93,7 @@ export default {
   methods: {
 
     go(where) {
-      this.$router.push({path: where});
+      this.$router.push({ path: where });
     },
 
     fastKey,
@@ -134,7 +130,6 @@ export default {
   transition: all 0.4s;
 }
 
-
 .active {
   background: var(--color-primary-bg-for-transparent);
 
@@ -158,7 +153,8 @@ main {
   scrollbar-width: none; // firefox
   margin-left: 140px;
   width: 90vw;
-//  边框阴影
+  height: 90vh;
+  //  边框阴影
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background: #fdfdf5;
@@ -190,7 +186,7 @@ main::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
 }
 
 .nav-item {
@@ -210,22 +206,24 @@ main::-webkit-scrollbar {
   /* 可以根据需要调整内边距 */
   border: 0 solid #ccc;
   border-radius: 5px;
-   
+
   /* 设置边框 */
 }
 
 
-.x1{
+.x1 {
   background-color: #bdbd49;
 }
 
-.x2{
+.x2 {
   background-color: #8ba076;
 }
-.x3{
+
+.x3 {
   background-color: #b7a64a;
 }
-.x4{
+
+.x4 {
   background-color: #8e6b12;
 }
 </style>

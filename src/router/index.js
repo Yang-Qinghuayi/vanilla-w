@@ -81,6 +81,14 @@ const routes = [
     },
   },
   {
+    path: '/searchPage',
+    name: 'searchPage',
+    component: () => import('@/views/searchPage.vue'),
+    meta: {
+      keepAlive: true,
+    },
+  },
+  {
     path: '/search/:keywords?',
     name: 'search',
     component: () => import('@/views/search.vue'),
