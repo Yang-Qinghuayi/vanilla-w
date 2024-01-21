@@ -1,5 +1,5 @@
 module.exports = {
   rules: {
-    "prettier/prettier": "off"
-  }
-}
+    'prettier/prettier': 'off',
+  },
+};

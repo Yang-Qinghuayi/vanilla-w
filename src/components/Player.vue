@@ -1,6 +1,5 @@
 <template>
   <div class="player" @click="toggleLyrics">
-    
     <div class="controls">
       <div class="playing">
         <div class="container" @click.stop>
@@ -57,29 +56,24 @@
             :title="$t('player.previous')"
             @click.native="playPrevTrack"
           >
-            <svg-icon icon-class="previous"
-            />
+            <svg-icon icon-class="previous" />
           </button-icon>
           <button-icon
             v-show="player.isPersonalFM"
             title="不喜欢"
             @click.native="moveToFMTrash"
           >
-            <svg-icon icon-class="thumbs-down"
-            />
+            <svg-icon icon-class="thumbs-down" />
           </button-icon>
           <button-icon
             class="play"
             :title="$t(player.playing ? 'player.pause' : 'player.play')"
             @click.native="playOrPause"
           >
-            <svg-icon :icon-class="player.playing ? 'pause' : 'play'"
-            />
+            <svg-icon :icon-class="player.playing ? 'pause' : 'play'" />
           </button-icon>
-          <button-icon :title="$t('player.next')" @click.native="playNextTrack"
-          >
-            <svg-icon icon-class="next"
-            />
+          <button-icon :title="$t('player.next')" @click.native="playNextTrack">
+            <svg-icon icon-class="next" />
           </button-icon>
         </div>
         <div class="blank"></div>
@@ -95,8 +89,7 @@
             }"
             @click.native="goToNextTracksPage"
           >
-            <svg-icon icon-class="list"
-            />
+            <svg-icon icon-class="list" />
           </button-icon>
           <button-icon
             :class="{
@@ -124,8 +117,7 @@
             :title="$t('player.shuffle')"
             @click.native="switchShuffle"
           >
-            <svg-icon icon-class="shuffle"
-            />
+            <svg-icon icon-class="shuffle" />
           </button-icon>
           <button-icon
             v-if="settings.enableReversedMode"
@@ -133,13 +125,12 @@
             :title="$t('player.reversed')"
             @click.native="switchReversed"
           >
-            <svg-icon icon-class="sort-up"
-            />
+            <svg-icon icon-class="sort-up" />
           </button-icon>
           <div class="volume-control">
             <button-icon :title="$t('player.mute')" @click.native="mute">
-              <svg-icon v-show="volume > 0.5" icon-class="volume"/>
-              <svg-icon v-show="volume === 0" icon-class="volume-mute"/>
+              <svg-icon v-show="volume > 0.5" icon-class="volume" />
+              <svg-icon v-show="volume === 0" icon-class="volume-mute" />
               <svg-icon
                 v-show="volume <= 0.5 && volume !== 0"
                 icon-class="volume-half"
@@ -165,8 +156,7 @@
             style="margin-left: 12px"
             @click.native="toggleLyrics"
           >
-            <svg-icon icon-class="arrow-up"
-            />
+            <svg-icon icon-class="arrow-up" />
           </button-icon>
         </div>
       </div>
@@ -175,13 +165,13 @@
 </template>
 
 <script>
-import {mapState, mapMutations, mapActions} from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import '@/assets/css/slider.css';
 
 import ButtonIcon from '@/components/ButtonIcon.vue';
 import VueSlider from 'vue-slider-component';
-import {goToListSource, hasListSource} from '@/utils/playList';
-import {formatTrackTime} from '@/utils/common';
+import { goToListSource, hasListSource } from '@/utils/playList';
+import { formatTrackTime } from '@/utils/common';
 
 export default {
   name: 'Player',
@@ -231,7 +221,7 @@ export default {
       if (this.player.isPersonalFM) return;
       this.$route.name === 'next'
         ? this.$router.go(-1)
-        : this.$router.push({name: 'next'});
+        : this.$router.push({ name: 'next' });
     },
     formatTrackTime(value) {
       return formatTrackTime(value);
@@ -244,10 +234,10 @@ export default {
     },
     goToAlbum() {
       if (this.player.currentTrack.al.id === 0) return;
-      this.$router.push({path: '/album/' + this.player.currentTrack.al.id});
+      this.$router.push({ path: '/album/' + this.player.currentTrack.al.id });
     },
     goToArtist(id) {
-      this.$router.push({path: '/artist/' + id});
+      this.$router.push({ path: '/artist/' + id });
     },
     moveToFMTrash() {
       this.player.moveToFMTrash();

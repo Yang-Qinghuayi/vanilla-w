@@ -18,11 +18,10 @@
       />
       <div class="info">
         <div class="title" @click.right="openMenu"
-        ><span v-if="playlist.privacy === 10" class="lock-icon">
-            <svg-icon icon-class="lock"/></span
-        >{{ playlist.name }}
-        </div
-        >
+          ><span v-if="playlist.privacy === 10" class="lock-icon">
+            <svg-icon icon-class="lock" /></span
+          >{{ playlist.name }}
+        </div>
         <div class="artist">
           Playlist by
           <span
@@ -32,13 +31,13 @@
               ].includes(playlist.id)
             "
             style="font-weight: 600"
-          >Apple Music</span
+            >Apple Music</span
           >
           <a
             v-else
             :href="`https://music.163.com/#/user/home?id=${playlist.creator.userId}`"
             target="blank"
-          >{{ playlist.creator.nickname }}</a
+            >{{ playlist.creator.nickname }}</a
           >
         </div>
         <div class="date-and-count">
@@ -78,7 +77,7 @@
       </div>
       <div v-if="displaySearchInPlaylist" class="search-box">
         <div class="container" :class="{ active: inputFocus }">
-          <svg-icon icon-class="search"/>
+          <svg-icon icon-class="search" />
           <div class="input">
             <input
               v-model.trim="inputSearchKeyWords"
@@ -102,7 +101,7 @@
         {{ specialPlaylistInfo.name }}
       </div>
       <div class="subtitle"
-      >{{ playlist.englishTitle }} · {{ playlist.updateFrequency }}
+        >{{ playlist.englishTitle }} · {{ playlist.updateFrequency }}
       </div>
 
       <div class="buttons">
@@ -149,7 +148,7 @@
       </h1>
       <div class="search-box-likepage" @click="searchInPlaylist()">
         <div class="container" :class="{ active: inputFocus }">
-          <svg-icon icon-class="search"/>
+          <svg-icon icon-class="search" />
           <div class="input" :style="{ width: searchInputWidth }">
             <input
               v-if="displaySearchInPlaylist"
@@ -180,9 +179,8 @@
         color="grey"
         :loading="loadingMore"
         @click.native="loadMore(100)"
-      >{{ $t('explore.loadMore') }}
-      </ButtonTwoTone
-      >
+        >{{ $t('explore.loadMore') }}
+      </ButtonTwoTone>
     </div>
 
     <Modal
@@ -191,49 +189,47 @@
       :show-footer="false"
       :click-outside-hide="true"
       title="歌单介绍"
-    >{{ playlist.description }}
-    </Modal
-    >
+      >{{ playlist.description }}
+    </Modal>
 
     <ContextMenu ref="playlistMenu">
       <!-- <div class="item">{{ $t('contextMenu.addToQueue') }}</div> -->
-      <div class="item" @click="likePlaylist(true)">{{
+      <div class="item" @click="likePlaylist(true)"
+        >{{
           playlist.subscribed
             ? $t('contextMenu.removeFromLibrary')
             : $t('contextMenu.saveToLibrary')
         }}
       </div>
-      <div class="item" @click="searchInPlaylist()">{{
-          $t('contextMenu.searchInPlaylist')
-        }}
+      <div class="item" @click="searchInPlaylist()"
+        >{{ $t('contextMenu.searchInPlaylist') }}
       </div>
       <div
         v-if="playlist.creator.userId === data.user.userId"
         class="item"
         @click="editPlaylist"
-      >编辑歌单信息
+        >编辑歌单信息
       </div>
       <div
         v-if="playlist.creator.userId === data.user.userId"
         class="item"
         @click="deletePlaylist"
-      >删除歌单
-      </div
-      >
+        >删除歌单
+      </div>
     </ContextMenu>
   </div>
 </template>
 
 <script>
-import {mapMutations, mapActions, mapState} from 'vuex';
+import { mapMutations, mapActions, mapState } from 'vuex';
 import NProgress from 'nprogress';
 import {
   getPlaylistDetail,
   subscribePlaylist,
   deletePlaylist,
 } from '@/api/playlist';
-import {getTrackDetail} from '@/api/track';
-import {isAccountLoggedIn} from '@/utils/auth';
+import { getTrackDetail } from '@/api/track';
+import { isAccountLoggedIn } from '@/utils/auth';
 import nativeAlert from '@/utils/nativeAlert';
 import locale from '@/locale';
 
@@ -714,10 +710,10 @@ export default {
 
 .gradient-blue-purple {
   background-image: linear-gradient(
-      45deg,
-      #89c4f5 0%,
-      #6284ff 42%,
-      #ff0000 100%
+    45deg,
+    #89c4f5 0%,
+    #6284ff 42%,
+    #ff0000 100%
   );
 }
 
@@ -735,30 +731,30 @@ export default {
 
 .gradient-indigo-pink-yellow {
   background-image: linear-gradient(
-      43deg,
-      #4158d0 0%,
-      #c850c0 46%,
-      #ffcc70 100%
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
   );
 }
 
 .gradient-light-red-light-blue {
   background-image: linear-gradient(
-      225deg,
-      hsl(190, 30%, 50%) 0%,
-      #081abb 38%,
-      #ec3841 58%,
-      hsl(13, 99%, 49%) 100%
+    225deg,
+    hsl(190, 30%, 50%) 0%,
+    #081abb 38%,
+    #ec3841 58%,
+    hsl(13, 99%, 49%) 100%
   );
 }
 
 .gradient-fog {
   background: linear-gradient(-180deg, #bcc5ce 0%, #929ead 98%),
-  radial-gradient(
+    radial-gradient(
       at top left,
       rgba(255, 255, 255, 0.3) 0%,
       rgba(0, 0, 0, 0.3) 100%
-  );
+    );
   background-blend-mode: screen;
 }
 
@@ -792,28 +788,28 @@ export default {
 
 .gradient-moonstone-blue {
   background-image: linear-gradient(
-      147deg,
-      hsl(200, 34%, 8%) 0%,
-      hsl(204, 35%, 38%) 50%,
-      hsl(200, 34%, 18%) 100%
+    147deg,
+    hsl(200, 34%, 8%) 0%,
+    hsl(204, 35%, 38%) 50%,
+    hsl(200, 34%, 18%) 100%
   );
 }
 
 .gradient-pink-purple-blue {
   background-image: linear-gradient(
-      to right,
-      #ff3cac 0%,
-      #784ba0 50%,
-      #2b86c5 100%
+    to right,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
   ) !important;
 }
 
 .gradient-green {
   background-image: linear-gradient(
-      90deg,
-      #c6f6d5,
-      #68d391,
-      #38b2ac
+    90deg,
+    #c6f6d5,
+    #68d391,
+    #38b2ac
   ) !important;
 }
 

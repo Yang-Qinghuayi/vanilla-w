@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import {isLooseLoggedIn, isAccountLoggedIn} from '@/utils/auth';
+import { isLooseLoggedIn, isAccountLoggedIn } from '@/utils/auth';
 
 Vue.use(VueRouter);
 const routes = [
@@ -169,7 +169,7 @@ router.beforeEach((to, from, next) => {
     if (isAccountLoggedIn()) {
       next();
     } else {
-      next({path: '/login/account'});
+      next({ path: '/login/account' });
     }
   }
   if (to.meta.requireLogin) {
@@ -177,9 +177,9 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       if (process.env.IS_ELECTRON === true) {
-        next({path: '/login/account'});
+        next({ path: '/login/account' });
       } else {
-        next({path: '/login'});
+        next({ path: '/login' });
       }
     }
   } else {

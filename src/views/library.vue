@@ -1,6 +1,5 @@
 <template>
   <div v-show="show" ref="library">
-
     <div class="mine">
       <!-- 这里放我的头像 -->
       <img
@@ -15,8 +14,7 @@
     </div>
 
     <div class="section-one">
-
-      <div style=" width: 92vw; display: grid; grid-template-columns : 1fr 1fr">
+      <div style="width: 92vw; display: grid; grid-template-columns: 1fr 1fr">
         <div class="liked-songs" @click="goToLikedSongsList">
           <div class="bottom">
             <!--我喜欢的音乐-->
@@ -25,33 +23,29 @@
             </div>
 
             <button @click.stop="openPlayModeTabMenu">
-              <svg-icon icon-class="play"/>
+              <svg-icon icon-class="play" />
             </button>
           </div>
-
         </div>
 
-<!--       
+        <!--       
         <div class="search-box">
           <input type="text" class="search-input" placeholder="搜索">
         </div>-->
-
       </div>
-
-
     </div>
 
     <div class="section-two">
       <div class="tabs-row">
         <div class="tabs">
-
           <!--          第一个,全部歌单-->
           <div
             class="tab dropdown"
             :class="{ active: currentTab === 'playlists' }"
             @click="updateCurrentTab('playlists')"
           >
-            <span class="text">{{
+            <span class="text"
+              >{{
                 {
                   all: $t('contextMenu.allPlaylists'),
                   mine: $t('contextMenu.minePlaylists'),
@@ -61,7 +55,7 @@
             </span>
             <!--这里是下拉小箭头-->
             <span class="icon" @click.stop="openPlaylistTabMenu">
-              <svg-icon icon-class="dropdown"/>
+              <svg-icon icon-class="dropdown" />
             </span>
           </div>
 
@@ -116,7 +110,7 @@
           class="tab-button"
           @click="openAddPlaylistModal"
         >
-          <svg-icon icon-class="plus"/>
+          <svg-icon icon-class="plus" />
           {{ $t('library.newPlayList') }}
         </button>
         <button
@@ -124,11 +118,10 @@
           class="tab-button"
           @click="selectUploadFiles"
         >
-          <svg-icon icon-class="arrow-up-alt"/>
+          <svg-icon icon-class="arrow-up-alt" />
           {{ $t('library.uploadSongs') }}
         </button>
       </div>
-
 
       <!--机动页面,选择性展示
       todo: 修改成链接式的,不要用v-show
@@ -162,7 +155,7 @@
       </div>
 
       <div v-show="currentTab === 'mvs'">
-        <MvRow :mvs="liked.mvs"/>
+        <MvRow :mvs="liked.mvs" />
       </div>
 
       <div v-show="currentTab === 'cloudDisk'">
@@ -211,41 +204,36 @@
     />
 
     <ContextMenu ref="playlistTabMenu">
-      <div class="item" @click="changePlaylistFilter('all')">{{
-          $t('contextMenu.allPlaylists')
-        }}
+      <div class="item" @click="changePlaylistFilter('all')"
+        >{{ $t('contextMenu.allPlaylists') }}
       </div>
-      <hr/>
-      <div class="item" @click="changePlaylistFilter('mine')">{{
-          $t('contextMenu.minePlaylists')
-        }}
+      <hr />
+      <div class="item" @click="changePlaylistFilter('mine')"
+        >{{ $t('contextMenu.minePlaylists') }}
       </div>
-      <div class="item" @click="changePlaylistFilter('liked')">{{
-          $t('contextMenu.likedPlaylists')
-        }}
+      <div class="item" @click="changePlaylistFilter('liked')"
+        >{{ $t('contextMenu.likedPlaylists') }}
       </div>
     </ContextMenu>
 
     <ContextMenu ref="playModeTabMenu">
-      <div class="item" @click="playLikedSongs">{{
-          $t('library.likedSongs')
-        }}
+      <div class="item" @click="playLikedSongs"
+        >{{ $t('library.likedSongs') }}
       </div>
-      <hr/>
-      <div class="item" @click="playIntelligenceList">{{
-          $t('contextMenu.cardiacMode')
-        }}
+      <hr />
+      <div class="item" @click="playIntelligenceList"
+        >{{ $t('contextMenu.cardiacMode') }}
       </div>
     </ContextMenu>
   </div>
 </template>
 
 <script>
-import {mapActions, mapMutations, mapState} from 'vuex';
-import {randomNum, dailyTask} from '@/utils/common';
-import {isAccountLoggedIn} from '@/utils/auth';
-import {uploadSong} from '@/api/user';
-import {getLyric} from '@/api/track';
+import { mapActions, mapMutations, mapState } from 'vuex';
+import { randomNum, dailyTask } from '@/utils/common';
+import { isAccountLoggedIn } from '@/utils/auth';
+import { uploadSong } from '@/api/user';
+import { getLyric } from '@/api/track';
 import NProgress from 'nprogress';
 import locale from '@/locale';
 
@@ -267,7 +255,7 @@ function extractLyricPart(rawLyric) {
 
 export default {
   name: 'Library',
-  components: {SvgIcon, CoverRow, TrackList, MvRow, ContextMenu},
+  components: { SvgIcon, CoverRow, TrackList, MvRow, ContextMenu },
   data() {
     return {
       show: false,
@@ -383,10 +371,10 @@ export default {
         return;
       }
       this.currentTab = tab;
-      this.$parent.$refs.main.scrollTo({top: 375, behavior: 'smooth'});
+      this.$parent.$refs.main.scrollTo({ top: 375, behavior: 'smooth' });
     },
     goToLikedSongsList() {
-      this.$router.push({path: '/library/liked-songs'});
+      this.$router.push({ path: '/library/liked-songs' });
     },
     getRandomLyric() {
       if (this.liked.songs.length === 0) return;
@@ -421,8 +409,8 @@ export default {
       this.$refs.playModeTabMenu.openMenu(e);
     },
     changePlaylistFilter(type) {
-      this.updateData({key: 'libraryPlaylistFilter', value: type});
-      window.scrollTo({top: 375, behavior: 'smooth'});
+      this.updateData({ key: 'libraryPlaylistFilter', value: type });
+      window.scrollTo({ top: 375, behavior: 'smooth' });
     },
     selectUploadFiles() {
       this.$refs.cloudDiskUploadInput.click();
@@ -445,7 +433,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 /* 在你的样式表中添加以下样式 */
 
 .search-box {
@@ -468,7 +455,6 @@ export default {
   margin-right: 10px;
   color: #757575;
 }
-
 
 .mine {
   display: flex;
@@ -498,7 +484,6 @@ export default {
     margin-bottom: 15px;
   }
 }
-
 
 .section-one {
   display: flex;

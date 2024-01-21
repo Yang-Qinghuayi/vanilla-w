@@ -14,17 +14,24 @@
       />
 
       <div
-        style="display: flex;  flex-direction: row; align-items: center; justify-content: space-between;">
-  
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
         <div class="text">
           <router-link :to="getTitleLink(item)">{{ item.name }}</router-link>
         </div>
 
         <button @click.stop="play(item)">
-          <svg-icon style="height: 10px; width: 10px; margin-right: 5px" icon-class="play"/>
+          <svg-icon
+            style="height: 10px; width: 10px; margin-right: 5px"
+            icon-class="play"
+          />
         </button>
       </div>
-
     </div>
   </div>
 </template>
@@ -38,14 +45,14 @@ export default {
     Cover,
   },
   props: {
-    items: {type: Array, required: true},
-    type: {type: String, required: true},
-    subText: {type: String, default: 'null'},
-    subTextFontSize: {type: String, default: '16px'},
-    showPlayCount: {type: Boolean, default: false},
-    columnNumber: {type: Number, default: 6},
-    gap: {type: String, default: '44px 24px'},
-    playButtonSize: {type: Number, default: 16},
+    items: { type: Array, required: true },
+    type: { type: String, required: true },
+    subText: { type: String, default: 'null' },
+    subTextFontSize: { type: String, default: '16px' },
+    showPlayCount: { type: Boolean, default: false },
+    columnNumber: { type: Number, default: 6 },
+    gap: { type: String, default: '44px 24px' },
+    playButtonSize: { type: Number, default: 16 },
   },
   computed: {
     playButtonStyles() {
@@ -63,7 +70,6 @@ export default {
     },
   },
   methods: {
-
     play(item) {
       const player = this.$store.state.player;
       const playActions = {
@@ -130,14 +136,13 @@ export default {
   display: grid;
 }
 
-
 .item {
   background: #f5f0f0;
   height: 272px;
   border-radius: 0.75em;
 
   .text {
-   padding-top: 10px;
+    padding-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
     color: #666;

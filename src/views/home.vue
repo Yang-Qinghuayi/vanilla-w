@@ -1,6 +1,5 @@
 <template>
   <div v-show="show" class="home">
-    
     <div class="index-row">
       <div class="title">
         {{ $t('home.recommendPlaylist') }}

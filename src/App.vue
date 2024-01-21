@@ -1,17 +1,21 @@
 <template>
   <div id="app" :class="{ 'user-select-none': userSelectNone }">
     <Scrollbar v-show="!showLyrics" ref="scrollbar" />
-    <div style="display: grid; grid-template-columns: 1fr 18fr; ">
+    <div style="display: grid; grid-template-columns: 1fr 18fr">
       <Navbar style="width: 10px" v-show="false" ref="navbar" />
       <div class="nvbar">
         <div class="nav-item x1" @click="go('/library')">我的</div>
         <div class="nav-item x2" @click="go('/home')">推荐</div>
-        <div class="nav-item x3" @click="go('/explore')">发现</div>
+        <!-- <div class="nav-item x3" @click="go('/explore')">发现</div> -->
         <div class="nav-item x3" @click="go('/searchPage')">搜索</div>
         <div class="nav-item x4" @click="go('/settings')">设置</div>
       </div>
       <div>
-        <main ref="main" :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }" @scroll="handleScroll">
+        <main
+          ref="main"
+          :style="{ overflow: enableScrolling ? 'auto' : 'hidden' }"
+          @scroll="handleScroll"
+        >
           <keep-alive>
             <router-view v-if="$route.meta.keepAlive"></router-view>
           </keep-alive>
@@ -43,7 +47,7 @@ import { ipcRenderer } from './electron/ipcRenderer';
 import { isAccountLoggedIn, isLooseLoggedIn } from '@/utils/auth';
 import Lyrics from './views/lyrics.vue';
 import { mapState } from 'vuex';
-import { fastKey } from "core-js/internals/internal-metadata";
+import { fastKey } from 'core-js/internals/internal-metadata';
 
 export default {
   name: 'App',
@@ -91,7 +95,6 @@ export default {
     this.fetchData();
   },
   methods: {
-
     go(where) {
       this.$router.push({ path: where });
     },
@@ -186,7 +189,6 @@ main::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .nav-item {
@@ -209,7 +211,6 @@ main::-webkit-scrollbar {
 
   /* 设置边框 */
 }
-
 
 .x1 {
   background-color: #bdbd49;

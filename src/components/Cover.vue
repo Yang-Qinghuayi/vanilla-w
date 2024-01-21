@@ -7,9 +7,8 @@
     @click="clickCoverToPlay ? play() : goTo()"
   >
     <div class="cover-container">
-
       <!--播放按钮-->
-<!--      <div class="shade">
+      <!--      <div class="shade">
         <button
           class="play-button"
           :style="playButtonStyles"
@@ -18,11 +17,9 @@
           <svg-icon icon-class="play"/>
         </button>
       </div>-->
-      
+
       <!--封面-->
-      <img :src="imageUrl" alt="封面" :style="imageStyles" loading="lazy"/>
-      
-      
+      <img :src="imageUrl" alt="封面" :style="imageStyles" loading="lazy" />
     </div>
   </div>
 </template>
@@ -30,17 +27,17 @@
 <script>
 export default {
   props: {
-    id: {type: Number, required: true},
-    type: {type: String, required: true},
-    imageUrl: {type: String, required: true},
-    fixedSize: {type: Number, default: 0},
-    playButtonSize: {type: Number, default: 22},
-    coverHover: {type: Boolean, default: true},
-    alwaysShowPlayButton: {type: Boolean, default: true},
-    alwaysShowShadow: {type: Boolean, default: false},
-    clickCoverToPlay: {type: Boolean, default: false},
-    shadowMargin: {type: Number, default: 12},
-    radius: {type: Number, default: 12},
+    id: { type: Number, required: true },
+    type: { type: String, required: true },
+    imageUrl: { type: String, required: true },
+    fixedSize: { type: Number, default: 0 },
+    playButtonSize: { type: Number, default: 22 },
+    coverHover: { type: Boolean, default: true },
+    alwaysShowPlayButton: { type: Boolean, default: true },
+    alwaysShowShadow: { type: Boolean, default: false },
+    clickCoverToPlay: { type: Boolean, default: false },
+    shadowMargin: { type: Number, default: 12 },
+    radius: { type: Number, default: 12 },
   },
   data() {
     return {
@@ -81,7 +78,7 @@ export default {
       playActions[this.type].bind(player)(this.id);
     },
     goTo() {
-      this.$router.push({name: this.type, params: {id: this.id}});
+      this.$router.push({ name: this.type, params: { id: this.id } });
     },
   },
 };
@@ -127,7 +124,6 @@ img {
 }
 
 .play-button {
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +144,7 @@ img {
     }
   }
 
- /* &:hover {
+  /* &:hover {
     background: rgba(255, 255, 255, 0.28);
   }*/
 
@@ -175,8 +171,7 @@ img {
   transition: opacity 0.3s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
-{
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
 </style>

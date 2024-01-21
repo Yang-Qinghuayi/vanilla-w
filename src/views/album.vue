@@ -139,7 +139,7 @@
         $t('contextMenu.openInBrowser')
       }}</div>
     </ContextMenu>
-  </div> 
+  </div>
 </template>
 
 <script>

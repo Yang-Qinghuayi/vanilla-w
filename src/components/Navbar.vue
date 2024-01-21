@@ -1,50 +1,43 @@
 <template>
   <div>
-    <nav :class="{ 'has-custom-titlebar': hasCustomTitlebar}">
-      <Win32Titlebar v-if="enableWin32Titlebar"/>
-      <LinuxTitlebar v-if="enableLinuxTitlebar"/>
+    <nav :class="{ 'has-custom-titlebar': hasCustomTitlebar }">
+      <Win32Titlebar v-if="enableWin32Titlebar" />
+      <LinuxTitlebar v-if="enableLinuxTitlebar" />
 
       <!--      前进后退的小标签-->
       <div class="navigation-buttons">
-        <button-icon @click.native="go('back')"
-        >
-          <svg-icon icon-class="arrow-left"
-          />
+        <button-icon @click.native="go('back')">
+          <svg-icon icon-class="arrow-left" />
         </button-icon>
-        <button-icon @click.native="go('forward')"
-        >
-          <svg-icon icon-class="arrow-right"
-          />
+        <button-icon @click.native="go('forward')">
+          <svg-icon icon-class="arrow-right" />
         </button-icon>
       </div>
 
       <div class="navigation-links">
-
         <!--我的音乐-->
         <router-link
           to="/library"
           :class="{ active: $route.name === 'library' }"
-        >{{ $t('nav.library') }}
+          >{{ $t('nav.library') }}
         </router-link>
 
         <!--去到推荐页面-->
-        <router-link to="/home" :class="{ active: $route.name === 'home' }">{{
-            $t('nav.home')
-          }}
+        <router-link to="/home" :class="{ active: $route.name === 'home' }"
+          >{{ $t('nav.home') }}
         </router-link>
 
         <!--去到发现页面-->
         <router-link
           to="/explore"
           :class="{ active: $route.name === 'explore' }"
-        >{{ $t('nav.explore') }}
+          >{{ $t('nav.explore') }}
         </router-link>
-
       </div>
       <div class="right-part">
         <div class="search-box">
           <div class="container" :class="{ active: inputFocus }">
-            <svg-icon icon-class="search"/>
+            <svg-icon icon-class="search" />
             <div class="input">
               <input
                 ref="searchInput"
@@ -69,20 +62,20 @@
 
     <ContextMenu ref="userProfileMenu">
       <div class="item" @click="toSettings">
-        <svg-icon icon-class="settings"/>
+        <svg-icon icon-class="settings" />
         {{ $t('library.userProfileMenu.settings') }}
       </div>
       <div v-if="!isLooseLoggedIn" class="item" @click="toLogin">
-        <svg-icon icon-class="login"/>
+        <svg-icon icon-class="login" />
         {{ $t('login.login') }}
       </div>
       <div v-if="isLooseLoggedIn" class="item" @click="logout">
-        <svg-icon icon-class="logout"/>
+        <svg-icon icon-class="logout" />
         {{ $t('library.userProfileMenu.logout') }}
       </div>
-      <hr/>
+      <hr />
       <div class="item" @click="toGitHub">
-        <svg-icon icon-class="github"/>
+        <svg-icon icon-class="github" />
         {{ $t('nav.github') }}
       </div>
     </ContextMenu>
@@ -90,8 +83,8 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import {isLooseLoggedIn, doLogout} from '@/utils/auth';
+import { mapState } from 'vuex';
+import { isLooseLoggedIn, doLogout } from '@/utils/auth';
 
 // import icons for win32 title bar
 // icons by https://github.com/microsoft/vscode-codicons
@@ -158,7 +151,7 @@ export default {
       }
       this.$router.push({
         name: 'search',
-        params: {keywords: this.keywords},
+        params: { keywords: this.keywords },
       });
     },
     showUserProfileMenu(e) {
@@ -167,19 +160,19 @@ export default {
     logout() {
       if (!confirm('确定要退出登录吗？')) return;
       doLogout();
-      this.$router.push({name: 'home'});
+      this.$router.push({ name: 'home' });
     },
     toSettings() {
-      this.$router.push({name: 'settings'});
+      this.$router.push({ name: 'settings' });
     },
     toGitHub() {
       window.open('https://github.com/qier222/YesPlayMusic');
     },
     toLogin() {
       if (process.env.IS_ELECTRON === true) {
-        this.$router.push({name: 'loginAccount'});
+        this.$router.push({ name: 'loginAccount' });
       } else {
-        this.$router.push({name: 'login'});
+        this.$router.push({ name: 'login' });
       }
     },
   },
