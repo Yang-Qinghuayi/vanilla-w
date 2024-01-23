@@ -197,7 +197,7 @@ class Background {
       backgroundColor:
         ((appearance === undefined || appearance === 'auto') &&
           nativeTheme.shouldUseDarkColors) ||
-          appearance === 'dark'
+        appearance === 'dark'
           ? '#222'
           : '#fff',
     };
@@ -281,9 +281,7 @@ class Background {
         })
         .then(result => {
           if (result.response === 0) {
-            shell.openExternal(
-              'https://github.com/qier222/vanilla/releases'
-            );
+            shell.openExternal('https://github.com/qier222/vanilla/releases');
           }
         });
     };

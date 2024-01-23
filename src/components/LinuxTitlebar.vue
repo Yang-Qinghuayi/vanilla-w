@@ -5,12 +5,22 @@
     </div>
     <div class="title">{{ title }}</div>
     <div class="controls">
-      <div class="button minimize codicon codicon-chrome-minimize" @click="windowMinimize"></div>
-      <div class="button max-restore codicon" :class="{
-                'codicon-chrome-restore': isMaximized,
-                'codicon-chrome-maximize': !isMaximized,
-              }" @click="windowMaxRestore"></div>
-      <div class="button close codicon codicon-chrome-close" @click="windowClose"></div>
+      <div
+        class="button minimize codicon codicon-chrome-minimize"
+        @click="windowMinimize"
+      ></div>
+      <div
+        class="button max-restore codicon"
+        :class="{
+          'codicon-chrome-restore': isMaximized,
+          'codicon-chrome-maximize': !isMaximized,
+        }"
+        @click="windowMaxRestore"
+      ></div>
+      <div
+        class="button close codicon codicon-chrome-close"
+        @click="windowClose"
+      ></div>
     </div>
   </div>
 </template>

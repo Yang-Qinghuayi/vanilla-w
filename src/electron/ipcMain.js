@@ -160,9 +160,9 @@ export function initIpcMain(win, store, trayEventEmitter) {
         },
         artists: ncmTrack.ar
           ? ncmTrack.ar.map(({ id, name }) => ({
-            id: id && id.toString(),
-            name,
-          }))
+              id: id && id.toString(),
+              name,
+            }))
           : [],
       };
 

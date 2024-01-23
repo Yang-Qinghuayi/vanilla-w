@@ -6,7 +6,12 @@
       <img src="/img/logos/netease-music.png" />
     </div>
     <div class="section-2">
-      <div class="card" @mouseover="activeCard = 1" @mouseleave="activeCard = 0" @click="goTo('account')">
+      <div
+        class="card"
+        @mouseover="activeCard = 1"
+        @mouseleave="activeCard = 0"
+        @click="goTo('account')"
+      >
         <div class="container" :class="{ active: activeCard === 1 }">
           <div class="title-info">
             <div class="title">{{ $t('login.loginText') }}</div>
@@ -15,7 +20,12 @@
           <svg-icon icon-class="arrow-right"></svg-icon>
         </div>
       </div>
-      <div class="card" @mouseover="activeCard = 2" @mouseleave="activeCard = 0" @click="goTo('username')">
+      <div
+        class="card"
+        @mouseover="activeCard = 2"
+        @mouseleave="activeCard = 0"
+        @click="goTo('username')"
+      >
         <div class="container" :class="{ active: activeCard === 2 }">
           <div class="title-info">
             <div class="title">{{ $t('login.search') }}</div>

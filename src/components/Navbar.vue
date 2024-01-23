@@ -16,15 +16,22 @@
 
       <div class="navigation-links">
         <!--我的音乐-->
-        <router-link to="/library" :class="{ active: $route.name === 'library' }">{{ $t('nav.library') }}
+        <router-link
+          to="/library"
+          :class="{ active: $route.name === 'library' }"
+          >{{ $t('nav.library') }}
         </router-link>
 
         <!--去到推荐页面-->
-        <router-link to="/home" :class="{ active: $route.name === 'home' }">{{ $t('nav.home') }}
+        <router-link to="/home" :class="{ active: $route.name === 'home' }"
+          >{{ $t('nav.home') }}
         </router-link>
 
         <!--去到发现页面-->
-        <router-link to="/explore" :class="{ active: $route.name === 'explore' }">{{ $t('nav.explore') }}
+        <router-link
+          to="/explore"
+          :class="{ active: $route.name === 'explore' }"
+          >{{ $t('nav.explore') }}
         </router-link>
       </div>
       <div class="right-part">
@@ -32,12 +39,24 @@
           <div class="container" :class="{ active: inputFocus }">
             <svg-icon icon-class="search" />
             <div class="input">
-              <input ref="searchInput" v-model="keywords" type="search" :placeholder="inputFocus ? '' : $t('nav.search')"
-                @keydown.enter="doSearch" @focus="inputFocus = true" @blur="inputFocus = false" />
+              <input
+                ref="searchInput"
+                v-model="keywords"
+                type="search"
+                :placeholder="inputFocus ? '' : $t('nav.search')"
+                @keydown.enter="doSearch"
+                @focus="inputFocus = true"
+                @blur="inputFocus = false"
+              />
             </div>
           </div>
         </div>
-        <img class="avatar" :src="avatarUrl" @click="showUserProfileMenu" loading="lazy" />
+        <img
+          class="avatar"
+          :src="avatarUrl"
+          @click="showUserProfileMenu"
+          loading="lazy"
+        />
       </div>
     </nav>
 
@@ -316,7 +335,6 @@ nav.has-custom-titlebar {
 [data-theme='dark'] {
   .search-box {
     .active {
-
       input,
       .svg-icon {
         color: var(--color-text);
