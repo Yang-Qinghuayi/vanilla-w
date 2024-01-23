@@ -6,7 +6,7 @@
 
 /* process style */
 .vue-slider-process {
-  background-color: #335eea;
+  background-color: #b7a64a;
   border-radius: 15px;
 }
 
@@ -38,7 +38,7 @@
   padding: 2px 6px;
   min-width: 20px;
   text-align: center;
-  color: #000;
+  color: #b7a64a;
   border-radius: 5px;
   border-color: #fff;
   background-color: #fff;
@@ -55,12 +55,12 @@
 /* volume style */
 .volume-control .vue-slider-process {
   opacity: 0.8;
-  background-color: var(--color-text);
+  /* background-color: var(--color-text); */
   border-radius: 15px;
 }
 
 .volume-control:hover .vue-slider-process {
-  background-color: #335eea;
+  background-color: #b7a64a;
 }
 
 /* nyancat */

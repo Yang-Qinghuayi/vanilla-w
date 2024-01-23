@@ -1,17 +1,12 @@
 <template>
   <div class="login">
     <div class="section-1">
-      <img src="/img/logos/yesplaymusic.png" />
+      <img src="/img/logos/vanilla.png" />
       <svg-icon icon-class="x"></svg-icon>
       <img src="/img/logos/netease-music.png" />
     </div>
     <div class="section-2">
-      <div
-        class="card"
-        @mouseover="activeCard = 1"
-        @mouseleave="activeCard = 0"
-        @click="goTo('account')"
-      >
+      <div class="card" @mouseover="activeCard = 1" @mouseleave="activeCard = 0" @click="goTo('account')">
         <div class="container" :class="{ active: activeCard === 1 }">
           <div class="title-info">
             <div class="title">{{ $t('login.loginText') }}</div>
@@ -20,12 +15,7 @@
           <svg-icon icon-class="arrow-right"></svg-icon>
         </div>
       </div>
-      <div
-        class="card"
-        @mouseover="activeCard = 2"
-        @mouseleave="activeCard = 0"
-        @click="goTo('username')"
-      >
+      <div class="card" @mouseover="activeCard = 2" @mouseleave="activeCard = 0" @click="goTo('username')">
         <div class="container" :class="{ active: activeCard === 2 }">
           <div class="title-info">
             <div class="title">{{ $t('login.search') }}</div>
@@ -77,10 +67,12 @@ export default {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+
   img {
     height: 64px;
     margin: 20px;
   }
+
   .svg-icon {
     height: 24px;
     width: 24px;
@@ -93,6 +85,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+
 .card {
   cursor: pointer;
   margin-top: 14px;
@@ -112,6 +105,7 @@ export default {
     .title-info {
       transform: translateX(-8px);
     }
+
     .svg-icon {
       opacity: 1;
       visibility: visible;
@@ -135,11 +129,13 @@ export default {
     font-size: 24px;
     font-weight: 600;
   }
+
   .info {
     margin-top: 2px;
     font-size: 14px;
     color: rgba(51, 94, 234, 0.78);
   }
+
   .svg-icon {
     opacity: 0;
     height: 24px;

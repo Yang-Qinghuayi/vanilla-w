@@ -16,22 +16,15 @@
 
       <div class="navigation-links">
         <!--我的音乐-->
-        <router-link
-          to="/library"
-          :class="{ active: $route.name === 'library' }"
-          >{{ $t('nav.library') }}
+        <router-link to="/library" :class="{ active: $route.name === 'library' }">{{ $t('nav.library') }}
         </router-link>
 
         <!--去到推荐页面-->
-        <router-link to="/home" :class="{ active: $route.name === 'home' }"
-          >{{ $t('nav.home') }}
+        <router-link to="/home" :class="{ active: $route.name === 'home' }">{{ $t('nav.home') }}
         </router-link>
 
         <!--去到发现页面-->
-        <router-link
-          to="/explore"
-          :class="{ active: $route.name === 'explore' }"
-          >{{ $t('nav.explore') }}
+        <router-link to="/explore" :class="{ active: $route.name === 'explore' }">{{ $t('nav.explore') }}
         </router-link>
       </div>
       <div class="right-part">
@@ -39,24 +32,12 @@
           <div class="container" :class="{ active: inputFocus }">
             <svg-icon icon-class="search" />
             <div class="input">
-              <input
-                ref="searchInput"
-                v-model="keywords"
-                type="search"
-                :placeholder="inputFocus ? '' : $t('nav.search')"
-                @keydown.enter="doSearch"
-                @focus="inputFocus = true"
-                @blur="inputFocus = false"
-              />
+              <input ref="searchInput" v-model="keywords" type="search" :placeholder="inputFocus ? '' : $t('nav.search')"
+                @keydown.enter="doSearch" @focus="inputFocus = true" @blur="inputFocus = false" />
             </div>
           </div>
         </div>
-        <img
-          class="avatar"
-          :src="avatarUrl"
-          @click="showUserProfileMenu"
-          loading="lazy"
-        />
+        <img class="avatar" :src="avatarUrl" @click="showUserProfileMenu" loading="lazy" />
       </div>
     </nav>
 
@@ -166,7 +147,7 @@ export default {
       this.$router.push({ name: 'settings' });
     },
     toGitHub() {
-      window.open('https://github.com/qier222/YesPlayMusic');
+      window.open('https://github.com/qier222/vanilla');
     },
     toLogin() {
       if (process.env.IS_ELECTRON === true) {
@@ -189,10 +170,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 64px;
+
   padding: {
     right: 10vw;
     left: 10vw;
   }
+
   backdrop-filter: saturate(180%) blur(20px);
 
   background-color: var(--color-navbar-bg);
@@ -255,6 +238,7 @@ nav.has-custom-titlebar {
     color: var(--color-text);
     transition: 0.2s;
     -webkit-user-drag: none;
+
     margin: {
       right: 12px;
       left: 12px;
@@ -301,6 +285,7 @@ nav.has-custom-titlebar {
     width: 15px;
     color: var(--color-text);
     opacity: 0.28;
+
     margin: {
       left: 8px;
       right: 4px;
@@ -331,6 +316,7 @@ nav.has-custom-titlebar {
 [data-theme='dark'] {
   .search-box {
     .active {
+
       input,
       .svg-icon {
         color: var(--color-text);

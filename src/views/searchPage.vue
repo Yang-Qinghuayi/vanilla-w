@@ -1,24 +1,27 @@
 <template>
   <div class="search-container">
-    <input type="text" id="searchInput" v-model="keyword" placeholder="搜索" @keypress.enter="search">
+    <input
+      type="text"
+      id="searchInput"
+      v-model="keyword"
+      placeholder="搜索"
+      @keypress.enter="search"
+    />
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Search',
   components: {},
   data() {
     return { keyword: '' };
   },
-  created() {
-  },
+  created() {},
   methods: {
     search() {
-      
       this.$router.push({ name: 'search', params: { keywords: this.keyword } });
-    }
+    },
   },
 };
 </script>

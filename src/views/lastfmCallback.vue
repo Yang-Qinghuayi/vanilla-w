@@ -1,7 +1,7 @@
 <template>
   <div class="lastfm-callback">
     <div class="section-1">
-      <img src="/img/logos/yesplaymusic.png" />
+      <img src="/img/logos/vanilla.png" />
       <svg-icon icon-class="x"></svg-icon>
       <img src="/img/logos/lastfm.png" />
     </div>
@@ -53,14 +53,17 @@ export default {
   align-items: center;
   height: calc(100vh - 192px);
 }
+
 .section-1 {
   margin-bottom: 16px;
   display: flex;
   align-items: center;
+
   img {
     height: 64px;
     margin: 20px;
   }
+
   .svg-icon {
     height: 24px;
     width: 24px;
@@ -86,11 +89,12 @@ button {
   margin-top: 24px;
   transition: 0.2s;
   padding: 8px 16px;
+
   &:hover {
     transform: scale(1.06);
   }
+
   &:active {
     transform: scale(0.94);
   }
-}
-</style>
+}</style>

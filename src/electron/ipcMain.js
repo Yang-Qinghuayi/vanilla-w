@@ -160,9 +160,9 @@ export function initIpcMain(win, store, trayEventEmitter) {
         },
         artists: ncmTrack.ar
           ? ncmTrack.ar.map(({ id, name }) => ({
-              id: id && id.toString(),
-              name,
-            }))
+            id: id && id.toString(),
+            name,
+          }))
           : [],
       };
 
@@ -253,7 +253,7 @@ export function initIpcMain(win, store, trayEventEmitter) {
       details: track.name + ' - ' + track.ar.map(ar => ar.name).join(','),
       state: track.al.name,
       largeImageKey: 'logo',
-      largeImageText: 'YesPlayMusic',
+      largeImageText: 'vanilla',
       smallImageKey: 'pause',
       smallImageText: 'Pause',
       instance: true,
